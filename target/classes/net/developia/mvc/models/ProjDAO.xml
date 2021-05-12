@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.developia.mvc.models.ProjDAO">
+
+	<select id="loginMember" parameterType="projDTO" resultType="projDTO">
+		SELECT no FROM member
+		WHERE id=#{id} AND pwd=#{pwd}
+	</select>
+	
+	<insert id="signupMember" parameterType="projDTO" >
+		INSERT INTO member(no, id, pwd, email)
+		VALUES (seq_member.NEXTVAL, #{id}, #{pwd}, #{email})
+	</insert>
+
+</mapper>

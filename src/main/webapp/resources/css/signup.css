@@ -1,0 +1,66 @@
+html, body{
+  padding:0px;
+  margin:0px;
+  background: #0080FF;
+  font-family: "proxima-nova", helvetica;
+}
+.container{
+  max-width:450px;
+  margin:auto;
+  text-align:center;
+}
+.container *{
+  box-sizing:border-box;
+  border-radius:3px;
+}
+
+.login-icon{
+  color:white;
+  font-size:30px;
+  font-weight:600;
+  margin:40px auto;
+}
+
+.login-form{
+  background: #FFFFFF;
+  color:#565656;
+  padding:40px;
+}
+
+.login-form .login-title{
+  font-size:38px;
+  font-weight:300;
+  margin:0px 0px 45px 0px;
+}
+
+.login-form .login-input{
+  display:block;
+  margin: 20px auto;
+  width:100%;
+  padding:15px;
+  font-size:18px;
+  border: 2px solid #e7e7e7;
+  background:#fcfcfc;
+}
+
+.login-form .login-input.button{
+  border:none;
+  color:white;
+  background:#15CD72;
+}
+
+.login-forgot{
+  text-decoration:underline;
+  font-size:14px;
+  color:#999;
+}
+
+.login-signup{
+  color:#FFF;
+  margin:20px 0px;
+}
+
+.login-signup a{
+  color:#FFF;
+  font-weight:600;
+}
