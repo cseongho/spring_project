@@ -96,10 +96,9 @@ public class ProjController {
 	}
 	
 	@RequestMapping(value="/site")
-	public ModelAndView handleRquestInternal(HttpSession session, HttpServletRequest request) {
+	public ModelAndView site(HttpSession session, @RequestParam("no") long catNo) {
 		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
-		long catNo = Long.parseLong(request.getParameter("no"));
-		
+	
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setNo(memNo);
 		
@@ -115,6 +114,29 @@ public class ProjController {
 			mav.addObject("cat_list", cat_list);
 			mav.addObject("site_list", site_list);
 			//mav.addObject("parse_site_list", parse_site_list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/siteDetail")
+	public ModelAndView siteDetail(HttpSession session, @RequestParam("linkNo") long linkNo) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+				
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setNo(memNo);
+		
+		SiteDTO siteDTO = new SiteDTO();
+		siteDTO.setNo(linkNo);
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<CategoryDTO> cat_list = projService.getCategoryList(memberDTO);
+			List<SiteDTO> site_list = projService.getSiteDetail(siteDTO);
+			mav.setViewName("siteDetail");
+			mav.addObject("cat_list", cat_list);
+			mav.addObject("site_list", site_list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -17,4 +17,6 @@ public interface ProjService {
 
 	List<SiteDTO> getSiteList(SiteDTO siteDTO) throws Exception;
 
+	List<SiteDTO> getSiteDetail(SiteDTO siteDTO) throws Exception;
+
 }

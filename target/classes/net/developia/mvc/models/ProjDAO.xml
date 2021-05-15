@@ -27,4 +27,10 @@
 		WHERE category_no=#{category_no}
 	</select>
 	
+	<select id="getSiteDetail" parameterType="SiteDTO" resultType="SiteDTO">
+		SELECT no, title, link, content
+		FROM site
+		WHERE no=#{no}
+	</select>
+	
 </mapper>
