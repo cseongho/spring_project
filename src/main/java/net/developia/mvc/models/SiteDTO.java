@@ -12,18 +12,11 @@ import lombok.ToString;
 
 @Data
 public class SiteDTO implements Serializable {
-	private long memNo;
-	private long catNo;
-	private long linkNo;
-	private String id;
-	private String pwd;
-	private String email;
-	private String name;
+	private long no;
+	private long category_no;
+	
 	private String title;
 	private String link;
 	private String content;
 	
-	public void setPwd(String pwd) {
-		this.pwd = DigestUtils.sha512Hex(pwd);
-	}
 }
