@@ -33,4 +33,8 @@
 		WHERE no=#{no}
 	</select>
 	
+	<insert id="siteAdd" parameterType="SiteDTO">
+		INSERT INTO site(no,title,link,content,category_no)
+		VALUES (seq_site.NEXTVAL, #{title} , #{link}, #{content}, #{category_no})
+	</insert>
 </mapper>

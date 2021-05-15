@@ -80,7 +80,6 @@ public class ProjController {
 	@RequestMapping(value="/main")
 	public ModelAndView main(HttpSession session) {
 		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
-		System.out.println("memNo2 : "+ memNo);
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setNo(memNo);
 		
@@ -113,7 +112,6 @@ public class ProjController {
 			mav.setViewName("site");
 			mav.addObject("cat_list", cat_list);
 			mav.addObject("site_list", site_list);
-			//mav.addObject("parse_site_list", parse_site_list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -143,4 +141,50 @@ public class ProjController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/siteAdd")
+	public ModelAndView siteAdd(HttpSession session) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setNo(memNo);
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<CategoryDTO> cat_list = projService.getCategoryList(memberDTO);
+			mav.setViewName("siteAdd");
+			mav.addObject("cat_list", cat_list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/siteAddAction")
+	public ModelAndView handleRquestInternal(HttpSession session, 
+										@RequestParam("no") long catNo, 
+										@RequestParam("title") String title,
+										@RequestParam("link") String link,
+										@RequestParam("content") String content) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+		
+		SiteDTO siteDTO = new SiteDTO();
+		siteDTO.setTitle(title);
+		siteDTO.setLink(link);
+		siteDTO.setContent(content);
+		siteDTO.setCategory_no(catNo);
+		
+		//projDTO.setMemNo(memNo);
+		
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			projService.siteAdd(siteDTO);
+			mav.setViewName("redirect:site?no="+ siteDTO.getCategory_no());
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.setViewName("result");
+			mav.addObject("url", "javascript:history.back();");
+		}
+		return mav;
+	}
 }

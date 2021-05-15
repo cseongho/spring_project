@@ -46,6 +46,13 @@ public class ProjServiceImpl implements ProjService {
 	public List<SiteDTO> getSiteDetail(SiteDTO siteDTO) throws Exception {
 		return projDAO.getSiteDetail(siteDTO);
 	}
+
+	@Override
+	public void siteAdd(SiteDTO siteDTO) throws Exception {
+		if(projDAO.siteAdd(siteDTO) != 1) {
+			throw new RuntimeException("");
+		}
+	}
 	
 
 }

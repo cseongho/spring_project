@@ -16,4 +16,6 @@ public interface ProjDAO {
 
 	List<SiteDTO> getSiteDetail(SiteDTO siteDTO) throws SQLException;
 
+	int siteAdd(SiteDTO siteDTO) throws SQLException;
+
 }
