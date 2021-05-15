@@ -5,6 +5,7 @@ import java.util.List;
 import net.developia.mvc.models.CategoryDTO;
 import net.developia.mvc.models.MemberDTO;
 import net.developia.mvc.models.ProjDTO;
+import net.developia.mvc.models.SiteDTO;
 
 public interface ProjService {
 
@@ -14,22 +15,6 @@ public interface ProjService {
 
 	List<CategoryDTO> getCategoryList(MemberDTO memberDTO) throws Exception;
 
-	void categoryAdd(ProjDTO projDTO) throws Exception;
-
-	void categoryDelete(ProjDTO projDTO) throws Exception;
-
-	void categoryUpdate(ProjDTO projDTO) throws Exception;
-
-	List<ProjDTO> getSiteList(ProjDTO projDTO) throws Exception;
-
-	void siteAdd(ProjDTO projDTO) throws Exception;
-
-	void siteDelete(ProjDTO projDTO) throws Exception;
-
-	void siteUpdate(ProjDTO projDTO) throws Exception;
-
-	List<ProjDTO> getSiteUpdateList(ProjDTO projDTO) throws Exception;
-
-	List<ProjDTO> getSiteDetail(ProjDTO projDTO) throws Exception;
+	List<SiteDTO> getSiteList(SiteDTO siteDTO) throws Exception;
 
 }

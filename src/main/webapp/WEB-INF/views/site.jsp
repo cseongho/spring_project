@@ -41,9 +41,9 @@
 								<h2>MY Link Site</h2>
 								<c:forEach var="cat" items="${cat_list}">
 									<li>
-									<a href="site?no=${cat.catNo}">${cat.name} &nbsp</a> 
-									<a href="categoryUpdate?no=${cat.catNo}&name=${cat.name}"><span class="glyphicon glyphicon-pencil"></span>&nbsp</a> 
-									<a href="categoryDeleteAction?no=${cat.catNo}"><span class="glyphicon glyphicon-remove"></span></a>
+									<a href="site?no=${cat.no}">${cat.name} &nbsp</a> 
+									<a href="categoryUpdate?no=${cat.no}&name=${cat.name}"><span class="glyphicon glyphicon-pencil"></span>&nbsp</a> 
+									<a href="categoryDeleteAction?no=${cat.no}"><span class="glyphicon glyphicon-remove"></span></a>
 									</li>
 								</c:forEach>
 							</ul>
@@ -74,7 +74,7 @@
 												<div class="row">
 													<div class="col-xs-6">
 														<div class="ticket-name">
-															<a href="siteDetail?linkNo=${site.linkNo}">
+															<a href="siteDetail?linkNo=${site.no}">
 																${site.title} </a> <span> </span>
 					
 														</div>
@@ -89,12 +89,12 @@
 																		class="form-control input-number"> <span
 																		class="input-group-btn">
 																		<button
-																			onclick="location.href='siteUpdate?linkNo=${site.linkNo}&catNo=<c:out value="${param.no}" />'"
+																			onclick="location.href='siteUpdate?linkNo=${site.no}&catNo=<c:out value="${param.no}" />'"
 																			type="button">
 																			<span class="glyphicon glyphicon-pencil"></span>
 																		</button>
 																		<button
-																			onclick="location.href='siteDeleteAction?linkNo=${site.linkNo}&catNo=<c:out value="${param.no}" />'"
+																			onclick="location.href='siteDeleteAction?linkNo=${site.no}&catNo=<c:out value="${param.no}" />'"
 																			type="button">
 																			<span class="glyphicon glyphicon-remove"></span>
 																			

@@ -21,4 +21,10 @@
 		WHERE member_no=#{no}
 	</select>
 	
+	<select id="getSiteList" parameterType="SiteDTO" resultType="SiteDTO">
+		SELECT no, title, link, content
+		FROM site
+		WHERE category_no=#{category_no}
+	</select>
+	
 </mapper>

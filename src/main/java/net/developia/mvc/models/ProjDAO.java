@@ -12,22 +12,6 @@ public interface ProjDAO {
 
 	List<CategoryDTO> getCategoryList(MemberDTO memberDTO) throws SQLException;
 
-	int categoryAdd(ProjDTO projDTO) throws SQLException;
+	List<SiteDTO> getSiteList(SiteDTO siteDTO) throws SQLException;
 
-	int categoryDelete(ProjDTO projDTO) throws SQLException;
-
-	int categoryUpdate(ProjDTO projDTO) throws SQLException;
-
-	List<ProjDTO> getSiteList(ProjDTO projDTO) throws SQLException;
-
-	int siteAdd(ProjDTO projDTO) throws SQLException;
-
-	int siteDelete(ProjDTO projDTO) throws SQLException;
-
-	int siteUpdate(ProjDTO projDTO) throws SQLException;
-
-	List<ProjDTO> getSiteUpdateList(ProjDTO projDTO) throws SQLException;
-
-
-	
 }

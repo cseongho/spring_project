@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.developia.mvc.models.CategoryDTO;
 import net.developia.mvc.models.MemberDTO;
 import net.developia.mvc.models.ProjDTO;
+import net.developia.mvc.models.SiteDTO;
 import net.developia.mvc.services.ProjService;
 
 @Slf4j
@@ -73,7 +74,6 @@ public class ProjController {
 			mav.addObject("msg", "");
 			mav.addObject("url", "javascript:history.back();");
 		}
-		
 		return mav;
 	}
 	
@@ -89,6 +89,32 @@ public class ProjController {
 			List<CategoryDTO> cat_list = projService.getCategoryList(memberDTO);
 			mav.setViewName("main");
 			mav.addObject("cat_list", cat_list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/site")
+	public ModelAndView handleRquestInternal(HttpSession session, HttpServletRequest request) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+		long catNo = Long.parseLong(request.getParameter("no"));
+		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setNo(memNo);
+		
+		SiteDTO siteDTO = new SiteDTO();
+		siteDTO.setCategory_no(catNo);
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<CategoryDTO> cat_list = projService.getCategoryList(memberDTO);
+			List<SiteDTO> site_list = projService.getSiteList(siteDTO);
+			
+			mav.setViewName("site");
+			mav.addObject("cat_list", cat_list);
+			mav.addObject("site_list", site_list);
+			//mav.addObject("parse_site_list", parse_site_list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
