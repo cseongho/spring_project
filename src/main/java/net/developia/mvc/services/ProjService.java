@@ -2,15 +2,17 @@ package net.developia.mvc.services;
 
 import java.util.List;
 
+import net.developia.mvc.models.CategoryDTO;
+import net.developia.mvc.models.MemberDTO;
 import net.developia.mvc.models.ProjDTO;
 
 public interface ProjService {
 
-	void signupMember(ProjDTO projDTO) throws Exception;
+	void signupMember(MemberDTO memberDTO) throws Exception;
 
-	ProjDTO loginMember(ProjDTO projDTO) throws Exception;
+	MemberDTO loginMember(MemberDTO memberDTO) throws Exception;
 
-	List<ProjDTO> getCategoryList(ProjDTO projDTO) throws Exception;
+	List<CategoryDTO> getCategoryList(MemberDTO memberDTO) throws Exception;
 
 	void categoryAdd(ProjDTO projDTO) throws Exception;
 

@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface ProjDAO {
 	
-	int signupMember(ProjDTO projDTO) throws SQLException;
+	int signupMember(MemberDTO memberDTO) throws SQLException;
 
-	ProjDTO loginMember(ProjDTO projDTO) throws SQLException;
+	MemberDTO loginMember(MemberDTO memberDTO) throws SQLException;
 
-	List<ProjDTO> getCategoryList(ProjDTO projDTO) throws SQLException;
+	List<CategoryDTO> getCategoryList(MemberDTO memberDTO) throws SQLException;
 
 	int categoryAdd(ProjDTO projDTO) throws SQLException;
 

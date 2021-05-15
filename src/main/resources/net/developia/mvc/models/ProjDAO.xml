@@ -5,20 +5,20 @@
 
 <mapper namespace="net.developia.mvc.models.ProjDAO">
 
-	<select id="loginMember" parameterType="projDTO" resultType="projDTO">
+	<select id="loginMember" parameterType="MemberDTO" resultType="MemberDTO">
 		SELECT no FROM member
 		WHERE id=#{id} AND pwd=#{pwd}
 	</select>
 	
-	<insert id="signupMember" parameterType="projDTO" >
+	<insert id="signupMember" parameterType="MemberDTO" >
 		INSERT INTO member(no, id, pwd, email)
 		VALUES (seq_member.NEXTVAL, #{id}, #{pwd}, #{email})
 	</insert>
 
-	<select id="getCategoryList" resultType="projDTO" parameterType="projDTO">
+	<select id="getCategoryList" parameterType="MemberDTO" resultType="CategoryDTO">
 		SELECT no, name
 		FROM category
-		WHERE member_no=#{memNo}
+		WHERE member_no=#{no}
 	</select>
 	
 </mapper>

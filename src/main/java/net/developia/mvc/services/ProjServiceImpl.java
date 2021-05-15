@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import net.developia.mvc.models.CategoryDTO;
+import net.developia.mvc.models.MemberDTO;
 import net.developia.mvc.models.ProjDAO;
 import net.developia.mvc.models.ProjDAOImpl;
 import net.developia.mvc.models.ProjDTO;
@@ -18,20 +20,20 @@ public class ProjServiceImpl implements ProjService {
 	private ProjDAO projDAO;
 	
 	@Override
-	public void signupMember(ProjDTO projDTO) throws Exception {
-		if(projDAO.signupMember(projDTO) != 1) {
+	public void signupMember(MemberDTO memberDTO) throws Exception {
+		if(projDAO.signupMember(memberDTO) != 1) {
 			throw new RuntimeException("");
 		}
 	}
 
 	@Override
-	public ProjDTO loginMember(ProjDTO projDTO) throws Exception {
-		return projDAO.loginMember(projDTO);
+	public MemberDTO loginMember(MemberDTO memberDTO) throws Exception {
+		return projDAO.loginMember(memberDTO);
 	}
 
 	@Override
-	public List<ProjDTO> getCategoryList(ProjDTO projDTO) throws Exception{
-		return projDAO.getCategoryList(projDTO);
+	public List<CategoryDTO> getCategoryList(MemberDTO memberDTO) throws Exception{
+		return projDAO.getCategoryList(memberDTO);
 	}
 
 	@Override

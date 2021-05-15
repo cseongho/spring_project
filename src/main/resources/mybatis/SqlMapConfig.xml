@@ -6,5 +6,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
    <typeAliases>
       <typeAlias type="net.developia.mvc.models.ProjDTO" alias="ProjDTO"/>
+      <typeAlias type="net.developia.mvc.models.MemberDTO" alias="MemberDTO"/>
+      <typeAlias type="net.developia.mvc.models.SiteDTO" alias="SiteDTO"/>
+      <typeAlias type="net.developia.mvc.models.CategoryDTO" alias="CategoryDTO"/>
    </typeAliases>
 </configuration>
