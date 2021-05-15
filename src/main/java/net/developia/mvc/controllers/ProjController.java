@@ -29,12 +29,17 @@ public class ProjController {
 	private ProjService projService;
 	
 	@RequestMapping(value="/login")
-	public ModelAndView login() {
+	public ModelAndView login() 
+	{
 		return new ModelAndView("login");
 	}
 	
 	@PostMapping(value="/loginAction")
-	public ModelAndView loginAction(@RequestParam("id") String id,@RequestParam("pwd") String pwd, HttpSession session) throws Exception {
+	public ModelAndView loginAction(HttpSession session, 
+									@RequestParam("id") String id,
+									@RequestParam("pwd") String pwd) throws Exception 
+	{
+		
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setId(id);
 		memberDTO.setPwd(pwd);
@@ -55,7 +60,10 @@ public class ProjController {
 	}
 	
 	@PostMapping(value="/signupAction")
-	public ModelAndView signupAction(@RequestParam("id") String id,@RequestParam("pwd") String pwd, @RequestParam("email") String email ) throws Exception {
+	public ModelAndView signupAction(@RequestParam("id") String id,
+									 @RequestParam("pwd") String pwd, 
+									 @RequestParam("email") String email ) throws Exception 
+	{
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setId(id);
 		memberDTO.setPwd(pwd);
@@ -78,7 +86,8 @@ public class ProjController {
 	}
 	
 	@RequestMapping(value="/main")
-	public ModelAndView main(HttpSession session) {
+	public ModelAndView main(HttpSession session) 
+	{
 		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setNo(memNo);
@@ -95,7 +104,9 @@ public class ProjController {
 	}
 	
 	@RequestMapping(value="/site")
-	public ModelAndView site(HttpSession session, @RequestParam("no") long catNo) {
+	public ModelAndView site(HttpSession session, 
+							 @RequestParam("no") long catNo) 
+	{
 		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
 	
 		MemberDTO memberDTO = new MemberDTO();
@@ -119,7 +130,9 @@ public class ProjController {
 	}
 	
 	@RequestMapping(value="/siteDetail")
-	public ModelAndView siteDetail(HttpSession session, @RequestParam("linkNo") long linkNo) {
+	public ModelAndView siteDetail(HttpSession session, 
+								  @RequestParam("linkNo") long linkNo) 
+	{
 		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
 				
 		MemberDTO memberDTO = new MemberDTO();
@@ -142,7 +155,8 @@ public class ProjController {
 	}
 	
 	@RequestMapping(value="/siteAdd")
-	public ModelAndView siteAdd(HttpSession session) {
+	public ModelAndView siteAdd(HttpSession session) 
+	{
 		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
 		
 		MemberDTO memberDTO = new MemberDTO();
@@ -164,7 +178,8 @@ public class ProjController {
 										@RequestParam("no") long catNo, 
 										@RequestParam("title") String title,
 										@RequestParam("link") String link,
-										@RequestParam("content") String content) {
+										@RequestParam("content") String content) 
+	{
 		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
 		
 		SiteDTO siteDTO = new SiteDTO();
@@ -186,7 +201,10 @@ public class ProjController {
 	}
 	
 	@RequestMapping(value="/siteDeleteAction")
-	public ModelAndView siteDeleteAction(HttpSession session, @RequestParam("linkNo") long linkNo, @RequestParam("catNo") long catNo) {
+	public ModelAndView siteDeleteAction(HttpSession session, 
+										 @RequestParam("linkNo") long linkNo, 
+										 @RequestParam("catNo") long catNo) 
+	{
 		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
 		
 		SiteDTO siteDTO = new SiteDTO();
@@ -194,6 +212,7 @@ public class ProjController {
 		siteDTO.setCategory_no(catNo);
 		
 		//alert 창(삭제하시겠습니까 yes or no)에 따른 코드 작성 예정..
+		//또는 siteDelete 페이지에서 패스워드 검사
 		
 		ModelAndView mav = new ModelAndView();
 		try {
