@@ -20,7 +20,7 @@ public class ProjServiceImpl implements ProjService {
 	@Override
 	public void signupMember(ProjDTO projDTO) throws Exception {
 		if(projDAO.signupMember(projDTO) != 1) {
-			throw new RuntimeException("실패");
+			throw new RuntimeException("");
 		}
 	}
 
@@ -37,7 +37,7 @@ public class ProjServiceImpl implements ProjService {
 	@Override
 	public void categoryAdd(ProjDTO projDTO) throws Exception {
 		if(projDAO.categoryAdd(projDTO) != 1) {
-			throw new RuntimeException("카테고리 추가 오류");
+			throw new RuntimeException("");
 		}
 	}
 
@@ -60,7 +60,7 @@ public class ProjServiceImpl implements ProjService {
 	@Override
 	public void siteAdd(ProjDTO projDTO) throws Exception {
 		if(projDAO.siteAdd(projDTO) != 1) {
-			throw new RuntimeException("사이트 추가 오류");
+			throw new RuntimeException("");
 		}
 		
 	}

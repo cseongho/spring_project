@@ -1,5 +1,7 @@
 package net.developia.mvc.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,7 +31,7 @@ public class ProjController {
 	}
 	
 	@PostMapping(value="/loginAction")
-	public ModelAndView loginAction(@RequestParam("id") String id,@RequestParam("pwd") String pwd) throws Exception {
+	public ModelAndView loginAction(@RequestParam("id") String id,@RequestParam("pwd") String pwd, HttpServletRequest request) throws Exception {
 		ProjDTO projDTO = new ProjDTO();
 		projDTO.setId(id);
 		projDTO.setPwd(pwd);
@@ -39,14 +41,14 @@ public class ProjController {
 			projDTO = projService.loginMember(projDTO);
 			System.out.println(projDTO);
 			mav.setViewName("main");
-			//HttpSession session = request.getSession(true);
-			//String member_no = Long.toString(projDTO.getMemNo());
-			//session.setAttribute("member_no", member_no);
+			HttpSession session = request.getSession(true);
+			String member_no = Long.toString(projDTO.getNo());
+			session.setAttribute("member_no", member_no);
 			//long memNo = Long.parseLong((String) session.getAttribute("member_no"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			mav.setViewName("result");
-			mav.addObject("msg", "로그인에 실패 하였습니다.");
+			mav.addObject("msg", "");
 			mav.addObject("url", "javascript:history.back();");
 		}
 		return mav;
@@ -63,16 +65,34 @@ public class ProjController {
 		try {
 			projService.signupMember(projDTO);
 			mav.setViewName("result");
-			mav.addObject("msg", projDTO.getId()+"님 회원가입이 완료 되었습니다.");
+			mav.addObject("msg", projDTO.getId()+"");
 			mav.addObject("url", "login");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			mav.setViewName("result");
-			mav.addObject("msg", "회원가입이 실패 하였습니다.");
+			mav.addObject("msg", "");
 			mav.addObject("url", "javascript:history.back();");
 		}
 		
+		return mav;
+	}
+	
+	@RequestMapping(value="/main")
+	public ModelAndView main(HttpSession session) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+		
+		ProjDTO projDTO = new ProjDTO();
+		projDTO.setMemNo(memNo);
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<ProjDTO> cat_list = projService.getCategoryList(projDTO);
+			mav.setViewName("main");
+			mav.addObject("cat_list", cat_list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return mav;
 	}
 	

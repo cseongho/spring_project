@@ -15,4 +15,10 @@
 		VALUES (seq_member.NEXTVAL, #{id}, #{pwd}, #{email})
 	</insert>
 
+	<select id="getCategoryList" resultType="projDTO" parameterType="projDTO">
+		SELECT no, name
+		FROM category
+		WHERE member_no=#{memNo}
+	</select>
+	
 </mapper>
