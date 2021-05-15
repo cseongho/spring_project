@@ -160,7 +160,7 @@ public class ProjController {
 	}
 	
 	@RequestMapping(value="/siteAddAction")
-	public ModelAndView handleRquestInternal(HttpSession session, 
+	public ModelAndView siteAddAction(HttpSession session, 
 										@RequestParam("no") long catNo, 
 										@RequestParam("title") String title,
 										@RequestParam("link") String link,
@@ -172,14 +172,33 @@ public class ProjController {
 		siteDTO.setLink(link);
 		siteDTO.setContent(content);
 		siteDTO.setCategory_no(catNo);
-		
-		//projDTO.setMemNo(memNo);
-		
-		
+			
 		ModelAndView mav = new ModelAndView();
 		try {
 			projService.siteAdd(siteDTO);
-			mav.setViewName("redirect:site?no="+ siteDTO.getCategory_no());
+			mav.setViewName("redirect:site?no="+ catNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.setViewName("result");
+			mav.addObject("url", "javascript:history.back();");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/siteDeleteAction")
+	public ModelAndView siteDeleteAction(HttpSession session, @RequestParam("linkNo") long linkNo, @RequestParam("catNo") long catNo) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+		
+		SiteDTO siteDTO = new SiteDTO();
+		siteDTO.setNo(linkNo);
+		siteDTO.setCategory_no(catNo);
+		
+		//alert 창(삭제하시겠습니까 yes or no)에 따른 코드 작성 예정..
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			projService.siteDelete(siteDTO);
+			mav.setViewName("redirect:site?no=" + catNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			mav.setViewName("result");

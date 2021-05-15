@@ -21,4 +21,6 @@ public interface ProjService {
 
 	void siteAdd(SiteDTO siteDTO) throws Exception;
 
+	void siteDelete(SiteDTO siteDTO) throws Exception;
+
 }

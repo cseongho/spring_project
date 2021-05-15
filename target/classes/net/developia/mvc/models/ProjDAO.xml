@@ -37,4 +37,9 @@
 		INSERT INTO site(no,title,link,content,category_no)
 		VALUES (seq_site.NEXTVAL, #{title} , #{link}, #{content}, #{category_no})
 	</insert>
+	
+	<delete id="siteDelete">
+		DELETE FROM site
+		WHERE no=#{no} AND category_no=#{category_no} 
+	</delete>
 </mapper>

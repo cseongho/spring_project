@@ -53,6 +53,13 @@ public class ProjServiceImpl implements ProjService {
 			throw new RuntimeException("");
 		}
 	}
+
+	@Override
+	public void siteDelete(SiteDTO siteDTO) throws Exception {
+		if(projDAO.siteDelete(siteDTO) != 1) {
+			throw new RuntimeException("");
+		}
+	}
 	
 
 }

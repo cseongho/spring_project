@@ -18,4 +18,6 @@ public interface ProjDAO {
 
 	int siteAdd(SiteDTO siteDTO) throws SQLException;
 
+	int siteDelete(SiteDTO siteDTO) throws SQLException;
+
 }
