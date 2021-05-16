@@ -90,7 +90,9 @@ public class ProjServiceImpl implements ProjService {
 
 	@Override
 	public void categoryUpdateAction(CategoryDTO categoryDTO) throws Exception {
-		projDAO.categoryUpdateAction(categoryDTO);
+		if(projDAO.categoryUpdateAction(categoryDTO) !=1) {
+			throw new RuntimeException("");
+		}
 	}
 	
 
