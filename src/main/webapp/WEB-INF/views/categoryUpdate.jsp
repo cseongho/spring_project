@@ -66,7 +66,7 @@
 						   	<table>
 					        		<tr>
 					        		<td><c:out value="${param.name}"/> ➡ </td>
-					        		<td><input type="text" name="name" placeholder="새로운 카테고리명 작성" ></td>
+					        		<td><input type="text" name="rename" placeholder="새로운 카테고리명 작성" ></td>
 					        		<td><button type="submit" >수정</button></td>
 					        		</tr>
 							</table>

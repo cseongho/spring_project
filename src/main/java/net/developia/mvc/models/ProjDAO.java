@@ -5,10 +5,10 @@ import java.util.List;
 
 
 public interface ProjDAO {
-	
-	int signupMember(MemberDTO memberDTO) throws SQLException;
 
 	MemberDTO loginMember(MemberDTO memberDTO) throws SQLException;
+	
+	int signupMember(MemberDTO memberDTO) throws SQLException;
 
 	List<CategoryDTO> getCategoryList(MemberDTO memberDTO) throws SQLException;
 
@@ -21,5 +21,11 @@ public interface ProjDAO {
 	int siteDelete(SiteDTO siteDTO) throws SQLException;
 
 	int siteUpdateAction(SiteDTO siteDTO) throws SQLException;
+
+	int categoryAddAction(CategoryDTO categoryDTO) throws SQLException;
+	
+	int categoryDeleteAction(CategoryDTO categoryDTO) throws SQLException;
+
+	int categoryUpdateAction(CategoryDTO categoryDTO) throws SQLException;
 
 }

@@ -27,4 +27,10 @@ public interface ProjService {
 
 	void siteUpdateAction(SiteDTO siteDTO) throws Exception;
 
+	void categoryAddAction(CategoryDTO categoryDTO) throws Exception;
+
+	void categoryDeleteAction(CategoryDTO categoryDTO) throws Exception;
+
+	void categoryUpdateAction(CategoryDTO categoryDTO) throws Exception;
+
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import net.developia.mvc.models.CategoryDTO;
 import net.developia.mvc.models.MemberDTO;
 import net.developia.mvc.models.ProjDAO;
-import net.developia.mvc.models.ProjDAOImpl;
 import net.developia.mvc.models.ProjDTO;
 import net.developia.mvc.models.SiteDTO;
 
@@ -72,6 +71,26 @@ public class ProjServiceImpl implements ProjService {
 			throw new RuntimeException("");
 		}
 		
+	}
+
+	@Override
+	public void categoryAddAction(CategoryDTO categoryDTO) throws Exception {
+		if(projDAO.categoryAddAction(categoryDTO) != 1) {
+			throw new RuntimeException("");
+		}
+	}
+
+	@Override
+	public void categoryDeleteAction(CategoryDTO categoryDTO) throws Exception {
+		if(projDAO.categoryDeleteAction(categoryDTO) != 1) {
+			throw new RuntimeException("");
+		}
+		
+	}
+
+	@Override
+	public void categoryUpdateAction(CategoryDTO categoryDTO) throws Exception {
+		projDAO.categoryUpdateAction(categoryDTO);
 	}
 	
 

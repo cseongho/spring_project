@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,7 @@ import net.developia.mvc.services.ProjService;
 @Slf4j
 @Controller
 public class ProjController {
-
+	
 	@Autowired
 	private ProjService projService;
 	
@@ -249,7 +250,7 @@ public class ProjController {
 		return mav;
 	}
 	
-	@RequestMapping(value="siteUpdateAction")
+	@RequestMapping(value="/siteUpdateAction")
 	public ModelAndView siteUpdateAction(HttpSession session, 
 										 @RequestParam("linkNo") long linkNo,
 										 @RequestParam("catNo") long catNo,
@@ -276,5 +277,114 @@ public class ProjController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value="/categoryAdd")
+	public ModelAndView categoryAdd(HttpSession session) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setNo(memNo);
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<CategoryDTO> cat_list = projService.getCategoryList(memberDTO);
+			mav.setViewName("categoryAdd");
+			mav.addObject("cat_list", cat_list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/categoryAddAction")
+	public ModelAndView categoryAddAction(HttpSession session,
+										  @RequestParam("name") String name) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+		
+		CategoryDTO categoryDTO = new CategoryDTO();
+		categoryDTO.setName(name);
+		categoryDTO.setMember_no(memNo);
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			projService.categoryAddAction(categoryDTO);
+			mav.setViewName("redirect:categoryAdd");
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.setViewName("result");
+			mav.addObject("url", "javascript:history.back();");
+		}
+		return mav;
+	}
+	
+	//@RequestMapping(value="/categoryDelete")
+	
+	@RequestMapping(value="/categoryDeleteAction")
+	public ModelAndView categoryDeleteAction(HttpSession session,
+											 @RequestParam("no") long catNo) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+		
+		CategoryDTO categoryDTO = new CategoryDTO();
+		categoryDTO.setMember_no(memNo);
+		categoryDTO.setNo(catNo);
+		
+		//alert 창(삭제하시겠습니까 yes or no)에 따른 코드 작성 예정..
+		//또는 확인 페이지에서 패스워드 검사
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			projService.categoryDeleteAction(categoryDTO);
+			mav.setViewName("redirect:main");
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.setViewName("result");
+			mav.addObject("url", "javascript:history.back();");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/categoryUpdate")
+	public ModelAndView categoryUpdate(HttpSession session,
+			 @RequestParam("no") long catNo,
+			 @RequestParam("name") String name) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setNo(memNo);
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<CategoryDTO> cat_list = projService.getCategoryList(memberDTO);
+			mav.setViewName("categoryUpdate");
+			mav.addObject("cat_list", cat_list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/categoryUpdateAction")
+	public ModelAndView categoryUpdateAction(HttpSession session,
+											 @RequestParam("no") long catNo,
+											 @RequestParam("rename") String rename) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+		
+		CategoryDTO categoryDTO = new CategoryDTO();
+		categoryDTO.setMember_no(memNo);
+		categoryDTO.setNo(catNo);
+		categoryDTO.setName(rename);
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			projService.categoryUpdateAction(categoryDTO);
+			mav.setViewName("redirect:site?no="+catNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.setViewName("result");
+			mav.addObject("url", "javascript:history.back();");
+		}
+		return mav;
+	}
+	
 	
 }

@@ -38,14 +38,30 @@
 		VALUES (seq_site.NEXTVAL, #{title} , #{link}, #{content}, #{category_no})
 	</insert>
 	
-	<delete id="siteDelete">
+	<delete id="siteDelete" parameterType="SiteDTO">
 		DELETE FROM site
 		WHERE no=#{no} AND category_no=#{category_no} 
 	</delete>
 	
-	<update id="siteUpdateAction">
+	<update id="siteUpdateAction" parameterType="SiteDTO">
 		UPDATE site
 		SET title=#{title}, link=#{link}, content=#{content}
 		WHERE no=#{no} AND category_no=#{category_no} 
 	</update> 
+	
+	<insert id="categoryAddAction" parameterType="CategoryDTO">
+		INSERT INTO category(no,name,member_no)
+		VALUES (seq_category.NEXTVAL, #{name} , #{member_no})
+	</insert>
+	
+	<delete id="categoryDeleteAction" parameterType="CategoryDTO">
+		DELETE FROM category
+		WHERE no=#{no} AND member_no=#{member_no}
+	</delete>
+	
+	<update id="categoryUpdateAction" parameterType="CategoryDTO">
+		UPDATE category
+		SET name=#{name}
+		WHERE no=#{no} AND member_no=#{member_no}
+	</update>
 </mapper>
