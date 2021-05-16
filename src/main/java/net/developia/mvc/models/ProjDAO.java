@@ -20,4 +20,6 @@ public interface ProjDAO {
 
 	int siteDelete(SiteDTO siteDTO) throws SQLException;
 
+	int siteUpdateAction(SiteDTO siteDTO) throws SQLException;
+
 }

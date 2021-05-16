@@ -225,4 +225,56 @@ public class ProjController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value="/siteUpdate")
+	public ModelAndView siteUpdate(HttpSession session, @RequestParam("linkNo") long linkNo) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setNo(memNo);
+		
+		SiteDTO siteDTO = new SiteDTO();
+		siteDTO.setNo(linkNo);
+
+		ModelAndView mav = new ModelAndView();
+		try {
+			List<CategoryDTO> cat_list = projService.getCategoryList(memberDTO);
+			List<SiteDTO> site_list = projService.getSiteUpdate(siteDTO);
+			mav.setViewName("siteUpdate");
+			mav.addObject("cat_list", cat_list);
+			mav.addObject("site_list", site_list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="siteUpdateAction")
+	public ModelAndView siteUpdateAction(HttpSession session, 
+										 @RequestParam("linkNo") long linkNo,
+										 @RequestParam("catNo") long catNo,
+										 @RequestParam("title") String title,
+										 @RequestParam("link") String link,
+										 @RequestParam("content") String content) {
+		long memNo = Long.parseLong((String) session.getAttribute("member_no"));
+	
+		SiteDTO siteDTO = new SiteDTO();
+		siteDTO.setNo(linkNo);
+		siteDTO.setCategory_no(catNo);
+		siteDTO.setTitle(title);
+		siteDTO.setLink(link);
+		siteDTO.setContent(content);
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			projService.siteUpdateAction(siteDTO);
+			mav.setViewName("redirect:siteDetail?linkNo="+linkNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.setViewName("result");
+			mav.addObject("url", "javascript:history.back();");
+		}
+		return mav;
+	}
+	
 }

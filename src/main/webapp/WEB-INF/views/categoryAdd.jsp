@@ -37,9 +37,9 @@
 								<h2>MY Link Site</h2>
 								<c:forEach var="cat" items="${cat_list}">
 									<li>
-									<a href="site?no=${cat.catNo}">${cat.name} &nbsp</a> 
-									<a href="categoryUpdate?no=${cat.catNo}&name=${cat.name}"><span class="glyphicon glyphicon-pencil"></span>&nbsp</a> 
-									<a href="categoryDeleteAction?no=${cat.catNo}"><span class="glyphicon glyphicon-remove"></span></a>
+									<a href="site?no=${cat.no}">${cat.name} &nbsp</a> 
+									<a href="categoryUpdate?no=${cat.no}&name=${cat.name}"><span class="glyphicon glyphicon-pencil"></span>&nbsp</a> 
+									<a href="categoryDeleteAction?no=${cat.no}"><span class="glyphicon glyphicon-remove"></span></a>
 									</li>
 								</c:forEach>
 							</ul>

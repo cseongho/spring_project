@@ -23,4 +23,8 @@ public interface ProjService {
 
 	void siteDelete(SiteDTO siteDTO) throws Exception;
 
+	List<SiteDTO> getSiteUpdate(SiteDTO siteDTO) throws Exception;
+
+	void siteUpdateAction(SiteDTO siteDTO) throws Exception;
+
 }

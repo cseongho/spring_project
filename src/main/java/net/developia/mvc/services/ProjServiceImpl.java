@@ -60,6 +60,19 @@ public class ProjServiceImpl implements ProjService {
 			throw new RuntimeException("");
 		}
 	}
+
+	@Override
+	public List<SiteDTO> getSiteUpdate(SiteDTO siteDTO) throws Exception {
+		return projDAO.getSiteDetail(siteDTO);
+	}
+
+	@Override
+	public void siteUpdateAction(SiteDTO siteDTO) throws Exception {
+		if(projDAO.siteUpdateAction(siteDTO) != 1) {
+			throw new RuntimeException("");
+		}
+		
+	}
 	
 
 }

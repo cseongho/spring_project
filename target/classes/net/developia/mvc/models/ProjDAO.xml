@@ -42,4 +42,10 @@
 		DELETE FROM site
 		WHERE no=#{no} AND category_no=#{category_no} 
 	</delete>
+	
+	<update id="siteUpdateAction">
+		UPDATE site
+		SET title=#{title}, link=#{link}, content=#{content}
+		WHERE no=#{no} AND category_no=#{category_no} 
+	</update> 
 </mapper>
