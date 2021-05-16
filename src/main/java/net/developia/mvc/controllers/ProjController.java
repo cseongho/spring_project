@@ -212,9 +212,6 @@ public class ProjController {
 		siteDTO.setNo(linkNo);
 		siteDTO.setCategory_no(catNo);
 		
-		//alert 창(삭제하시겠습니까 yes or no)에 따른 코드 작성 예정..
-		//또는 siteDelete 페이지에서 패스워드 검사
-		
 		ModelAndView mav = new ModelAndView();
 		try {
 			projService.siteDelete(siteDTO);
@@ -317,8 +314,6 @@ public class ProjController {
 		return mav;
 	}
 	
-	//@RequestMapping(value="/categoryDelete")
-	
 	@RequestMapping(value="/categoryDeleteAction")
 	public ModelAndView categoryDeleteAction(HttpSession session,
 											 @RequestParam("no") long catNo) {
@@ -327,9 +322,6 @@ public class ProjController {
 		CategoryDTO categoryDTO = new CategoryDTO();
 		categoryDTO.setMember_no(memNo);
 		categoryDTO.setNo(catNo);
-		
-		//alert 창(삭제하시겠습니까 yes or no)에 따른 코드 작성 예정..
-		//또는 확인 페이지에서 패스워드 검사
 		
 		ModelAndView mav = new ModelAndView();
 		try {
